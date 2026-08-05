@@ -11,7 +11,7 @@ public_folder: "/images"
 
 site_url: https://craft-break.netlify.app
 display_url: https://craft-break.netlify.app
-logo_url: https://craft-break.netlify.app/favicon.svg
+logo_url: https://craft-break.netlify.app/images/craft-break-icon-192.png
 
 collections:
   - name: content
