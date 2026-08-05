@@ -432,7 +432,7 @@
   <div class="desk-banner">
     <span class="tape tl"></span><span class="tape tr"></span>
     <h1>Craft Break</h1>
-    <p id="siteTagline">A monthly creative meetup at Cafe Isla. Bring your hands, borrow our scissors. Double-tap or click an icon below to open a window.</p>
+    <p id="siteTagline">A monthly creative meetup at Cafe Isla. Bring your hands, borrow our scissors. Tap or click an icon below to open a window.</p>
   </div>
 
   <h2 class="sr-only">Desktop shortcuts</h2>
@@ -504,24 +504,12 @@
     </div>
   </section>
 
-  <section class="window" id="win-news" role="dialog" aria-labelledby="t-news" aria-hidden="true">
-    <header class="titlebar"><span class="dots"><span></span><span></span></span><h2 id="t-news">Newsletter Signup</h2><button class="closebtn" type="button" data-close="win-news" aria-label="Close Newsletter Signup">X</button></header>
+  <section class="window" id="win-instagram" role="dialog" aria-labelledby="t-instagram" aria-hidden="true">
+    <header class="titlebar"><span class="dots"><span></span><span></span></span><h2 id="t-instagram">Instagram</h2><button class="closebtn" type="button" data-close="win-instagram" aria-label="Close Instagram">X</button></header>
     <div class="win-body">
-      <h3>One email a month. That's the deal.</h3>
-      <p>Dates, the upcoming theme, a couple of prompts to warm up with, and the occasional photo of something wonderful somebody made. No spam, no sales pitch, no "just circling back."</p>
-      <form id="newsForm" novalidate>
-        <div class="field">
-          <label for="newsEmail">Email address (required)</label>
-          <input type="email" id="newsEmail" name="email" required autocomplete="email" placeholder="you@example.com" />
-        </div>
-        <div class="field">
-          <label for="newsName">Name (optional)</label>
-          <input type="text" id="newsName" name="name" autocomplete="name" placeholder="What should we call you?" />
-          <p class="hint">Only used so the email doesn't open with "Hey there!"</p>
-        </div>
-        <button class="btn" type="submit">Sign me up for Craft Break</button>
-      </form>
-      <p class="status" id="newsStatus" role="status" hidden></p>
+      <h3>Follow Craft Break</h3>
+      <p>See what we're making, meet the community, and catch the latest Craft Break updates.</p>
+      <div class="btn-row"><a class="btn" href="https://www.instagram.com/craftbreak_media/" target="_blank" rel="noopener noreferrer">Open @craftbreak_media</a></div>
     </div>
   </section>
 
@@ -539,14 +527,13 @@
     <header class="titlebar"><span class="dots"><span></span><span></span></span><h2 id="t-gallery">Photo Gallery</h2><button class="closebtn" type="button" data-close="win-gallery" aria-label="Close Photo Gallery">X</button></header>
     <div class="win-body">
       <h3>Things people made, mid-break</h3>
-      <p>Click any tile to read what it is. Real photos go in later; these are placeholders standing in for the good stuff.</p>
+      <p>Click any tile to see the photo bigger.</p>
       <div class="gallery" id="galleryGrid"></div>
       <div class="lightbox" id="galleryDetail" role="status" aria-live="polite">
         <div class="big art-a"></div>
         <h4>Pick a tile</h4>
         <p>Select any thumbnail above to see it larger with its caption.</p>
       </div>
-      <p class="note"><strong>Editing this gallery:</strong> update the <code>craftBreakGallery</code> array in the script. Each item takes a <code>title</code>, <code>caption</code>, and an <code>artClass</code> that maps to a CSS placeholder style.</p>
     </div>
   </section>
 
@@ -570,7 +557,7 @@
       <p class="status" id="guestStatus" role="status" hidden></p>
       <h4>Notes from regulars</h4>
       <div id="guestList"></div>
-      <p class="note"><strong>Editing starter notes:</strong> change the <code>craftBreakGuestBook</code> array in the script. Each entry takes a <code>name</code>, <code>message</code>, and <code>when</code>.</p>
+      <p class="note">Leave a little hello, it's cute.</p>
     </div>
   </section>
 
@@ -580,16 +567,15 @@
       <h3 id="venueName">Cafe Isla</h3>
       <p class="addr" id="siteAddress">118 Wren Street<br />Corner of Wren &amp; Prospect<br />Open daily, 7:00 AM – 4:00 PM</p>
       <h4>The vibe</h4>
-      <p>Cafe Isla is a small neighborhood coffee shop with mismatched chairs, a long communal table down the middle, and plants in the window that somebody clearly loves. The light is good in the morning. The floor is already a little paint-flecked, so nobody flinches when a glue stick rolls off the table.</p>
+      <p>Cafe Isla is a small neighborhood coffee shop with mismatched chairs, a long hand painted bench, and plants in the window that we all love. The light is good in the morning, and afternoon, and night. The floor is nice and the rug in the corner is fancy.</p>
       <h4>Why we meet here</h4>
       <ul>
-        <li>That communal table seats twelve, which is the exact size of a good Craft Break.</li>
-        <li>Nobody rushes you out. Refills are cheap and the staff are in on it.</li>
-        <li>Step-free entry from Wren Street, accessible restroom, outlets along the north wall.</li>
-        <li>Real mugs, oat milk without a lecture, and a pastry case that makes decisions for you.</li>
+        <li>The mood is calm, the vibes are good, and the staff is stellar.</li>
+        <li>Easy entry off State St, clean restroom, outlets under the bench.</li>
+        <li>Real mugs, milk choices a Brooklynite would be proud of, and a pastry case that makes decisions for you.</li>
       </ul>
       <h4>Getting here</h4>
-      <p>Street parking on Prospect is free on weekends. The #14 bus stops one block east. Bike rack out front, under the awning.</p>
+      <p>Street parking on State st. The trolley's last stop is just down the street.</p>
       <div class="btn-row"><a class="btn" id="mapLink" href="#" role="button">View map</a></div>
       <p class="note">Cafe Isla is a working coffee shop, not a private venue. Buy a drink, tip your barista, keep the aisle clear. That's how we get invited back.</p>
     </div>
@@ -601,21 +587,18 @@
       <h3>Who puts this on</h3>
       <div class="host">
         <h4>Nimble Craft</h4>
-        <p>A small craft studio built on the belief that a two-hour project beats a two-year project you never start. Nimble Craft brings the supply crate, the prompt cards, and a bottomless patience for people who insist they "can't draw."</p>
-        <p><a href="#">nimblecraft.example</a></p>
+        <p>Founded in 2016, Nimble Craft was born from a dream to make creativity accessible and fun for all ages. With a background in Graphic Design, I believe in the power of collaboration – working closely with you to bring your unique vision to life.<br />Whether it's a birthday party, a team-building workshop, or a cozy crafting session, I'm here to guide you every step of the way.</p>
+        <p><a href="https://www.nimblecraftpa.com" target="_blank" rel="noopener noreferrer">https://www.nimblecraftpa.com</a></p>
       </div>
       <div class="host">
         <h4>The Mill Works Creator Space</h4>
-        <p>A shared workshop and studio for makers across disciplines — printmakers, woodworkers, textile folks, and at least one person always building something inexplicable. The Mill Works handles the community side: greeting first-timers, running the group game, and making sure nobody eats lunch alone.</p>
-        <p><a href="#">millworks.example</a></p>
+        <p>A shared workshop and studio for makers across disciplines — printmakers, woodworkers, textile folks, and at least one person always building something inexplicable.</p>
+        <p><a href="https://millworkscreatorspace.com" target="_blank" rel="noopener noreferrer">https://millworkscreatorspace.com</a></p>
       </div>
       <div class="host">
         <h4>Cafe Isla</h4>
-        <p>Our host venue and unofficial third organizer. Thank you for the good light and the extra napkins.</p>
+        <p>Our host venue and unofficial third organizer. Thank you for the juicy lights and the extra napkins.</p>
       </div>
-      <p class="note">Site built as a hand-cut paper collage pretending to be a desktop. All text, prompts, and guest notes are authored for this demo.</p>
-      <h4>For hosts</h4>
-      <p>Events, gallery, guest notes, prompts, and palettes are all editable at <a href="/admin/">the content manager</a> — sign in with your Netlify Identity account.</p>
     </div>
   </section>
 </main>
@@ -648,7 +631,7 @@ const craftBreakApps = [
   { id: "win-about",   label: "About Craft Break",  glyph: "book",    tone: "g-yellow" },
   { id: "win-games",   label: "Games & Art Prompts", glyph: "dice",   tone: ""         },
   { id: "win-paint",   label: "Paint App",           glyph: "brush",  tone: "g-rose"   },
-  { id: "win-news",    label: "Newsletter Signup",   glyph: "mail",   tone: ""         },
+  { id: "win-instagram", label: "Instagram",          glyph: "photo",  tone: ""         },
   { id: "win-cal",     label: "Calendar & Themes",   glyph: "cal",    tone: "g-yellow" },
   { id: "win-gallery", label: "Photo Gallery",       glyph: "photo",  tone: "g-leaf"   },
   { id: "win-guest",   label: "Guest Book",          glyph: "pen",    tone: ""         },
@@ -1049,30 +1032,6 @@ document.getElementById("btnClear").addEventListener("click", () => {
 
 window.addEventListener("resize", () => {
   if (document.getElementById("win-paint").classList.contains("open")) sizeCanvas();
-});
-
-/* ---------- newsletter ---------- */
-const newsForm = document.getElementById("newsForm");
-const newsStatus = document.getElementById("newsStatus");
-newsForm.addEventListener("submit", e => {
-  e.preventDefault();
-  const email = document.getElementById("newsEmail").value.trim();
-  const name = document.getElementById("newsName").value.trim();
-  newsStatus.hidden = false;
-
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    newsStatus.style.background = "#F8D7CF";
-    newsStatus.style.borderColor = "#C4553F";
-    newsStatus.textContent = "That email doesn't look quite right — mind checking it?";
-    document.getElementById("newsEmail").focus();
-    return;
-  }
-
-  newsStatus.style.background = "#D9EBC9";
-  newsStatus.style.borderColor = "#7FA968";
-  newsStatus.textContent = (name ? "Thanks, " + name + "! " : "Thanks! ") +
-    "You'll hear from us about the next Craft Break at Cafe Isla.";
-  newsForm.reset();
 });
 
 /* ---------- calendar ---------- */
