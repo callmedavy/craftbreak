@@ -1,0 +1,21 @@
+{
+  "name": "Craft Break",
+  "short_name": "Craft Break",
+  "description": "A monthly creative meetup at Cafe Isla, hosted by Nimble Craft and The Mill Works Creator Space.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7C948",
+  "theme_color": "#F7C948",
+  "icons": [
+    {
+      "src": "/images/craft-break-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/craft-break-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
