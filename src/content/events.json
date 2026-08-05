@@ -1,0 +1,10 @@
+{
+  "events": [
+    { "day": "15", "month": "Aug", "year": "2026", "theme": "Paper Collage Night", "description": "Magazines, old maps, and a mountain of scrap paper. Cut first, decide later." },
+    { "day": "19", "month": "Sep", "year": "2026", "theme": "Tiny Maps & Imaginary Places", "description": "Draw a neighborhood that doesn't exist. Bonus points for naming the streets." },
+    { "day": "17", "month": "Oct", "year": "2026", "theme": "Print & Stamp Sampler", "description": "Hand-carved erasers and potato stamps. Ink gets everywhere. Wear the shirt you don't like." },
+    { "day": "21", "month": "Nov", "year": "2026", "theme": "Zine in Two Hours", "description": "One sheet, eight pages, one fold. You leave with a finished thing you can hand to somebody." },
+    { "day": "19", "month": "Dec", "year": "2026", "theme": "Handmade Card Swap", "description": "Make five, take five home. Bring your worst handwriting and your best joke." },
+    { "day": "16", "month": "Jan", "year": "2027", "theme": "Blind Contour & Bad Drawings", "description": "Draw without looking at the paper. The whole point is that it goes badly." }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "craft-break-site",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Craft Break — a monthly creative meetup at Cafe Isla. Static site with a Decap CMS admin.",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp -R src/. dist/",
+    "dev": "npm run build && npx --yes serve dist"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "moods": [
+    { "name": "Sunflower Desktop", "description": "Loud yellow held in place by a calm blue and a hard black line. Use the dark sparingly and it sings.", "colors": ["#F7C948", "#FBE49B", "#AFD3EC", "#241F14"] },
+    { "name": "Cold Brew & Cream", "description": "Four browns pretending to be a full palette. Warm, quiet, and forgiving of mistakes.", "colors": ["#3B2A1E", "#8A6A4F", "#E7D6BE", "#FFFDF4"] },
+    { "name": "Window Light, 9 AM", "description": "Pale and green and slightly sleepy. Good for anything drawn from life.", "colors": ["#FFF6DE", "#F3D9A4", "#BFD9AE", "#7FA968"] },
+    { "name": "Risograph Accident", "description": "Three inks that shouldn't overlap and absolutely should. Let the edges misregister.", "colors": ["#E98A7B", "#5D8FB3", "#F7C948", "#FFFDF4"] },
+    { "name": "Paper Scraps", "description": "The palette of the bottom of the supply crate. Muted, tactile, endlessly stackable.", "colors": ["#F1EADA", "#D8C7A9", "#8FB4CE", "#4B4232"] },
+    { "name": "Late Night Studio", "description": "Dark ground, one warm light source. Everything you draw looks more serious than it is.", "colors": ["#241F14", "#4B4232", "#8FB4CE", "#F7C948"] },
+    { "name": "Neighborhood Awning", "description": "Storefront colors. Cheerful without being childish, if you keep the shapes flat.", "colors": ["#E0A81B", "#FFFDF4", "#7FA968", "#E98A7B"] }
+  ]
+}

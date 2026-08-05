@@ -1,0 +1,121 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    update: 'Craft Break: update {{collection}} "{{slug}}"'
+
+publish_mode: simple
+
+media_folder: "src/images"
+public_folder: "/images"
+
+site_url: https://craft-break.netlify.app
+display_url: https://craft-break.netlify.app
+logo_url: https://craft-break.netlify.app/favicon.svg
+
+collections:
+  - name: content
+    label: "Craft Break Content"
+    editor:
+      preview: false
+    files:
+      - name: events
+        label: "Calendar & Themes"
+        file: "src/content/events.json"
+        description: "Upcoming Craft Break sessions. Drag to reorder — the site renders them top to bottom."
+        fields:
+          - name: events
+            label: "Sessions"
+            label_singular: "Session"
+            widget: list
+            summary: "{{fields.month}} {{fields.day}} {{fields.year}} — {{fields.theme}}"
+            fields:
+              - { name: day, label: "Day (number)", widget: string, hint: "e.g. 15" }
+              - { name: month, label: "Month (3 letters)", widget: string, hint: "e.g. Aug" }
+              - { name: year, label: "Year", widget: string, hint: "e.g. 2026" }
+              - { name: theme, label: "Theme name", widget: string }
+              - { name: description, label: "Short description", widget: text }
+
+      - name: gallery
+        label: "Photo Gallery"
+        file: "src/content/gallery.json"
+        description: "Upload a real photo, or leave the image blank to use a coloured collage placeholder."
+        fields:
+          - name: items
+            label: "Gallery items"
+            label_singular: "Item"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: caption, label: "Caption", widget: text }
+              - { name: image, label: "Photo", widget: image, required: false, allow_multiple: false }
+              - name: artClass
+                label: "Placeholder style (used when no photo)"
+                widget: select
+                default: "art-a"
+                options:
+                  - { label: "Yellow / blue split", value: "art-a" }
+                  - { label: "Coral dot", value: "art-b" }
+                  - { label: "Blue stripes", value: "art-c" }
+                  - { label: "Green horizon", value: "art-d" }
+                  - { label: "Colour wheel", value: "art-e" }
+                  - { label: "Concentric rings", value: "art-f" }
+
+      - name: guestbook
+        label: "Guest Book"
+        file: "src/content/guestbook.json"
+        description: "The notes shown to every visitor. Notes typed in by visitors are session-only — add the keepers here."
+        fields:
+          - name: entries
+            label: "Entries"
+            label_singular: "Entry"
+            widget: list
+            summary: "{{fields.name}} — {{fields.when}}"
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: message, label: "Message", widget: text }
+              - { name: when, label: "When", widget: string, hint: "e.g. Aug 2026" }
+
+      - name: prompts
+        label: "Art Prompts"
+        file: "src/content/prompts.json"
+        description: "The pool the prompt generator draws from. One prompt per line item."
+        fields:
+          - name: prompts
+            label: "Prompts"
+            label_singular: "Prompt"
+            widget: list
+
+      - name: moods
+        label: "Colour Moods"
+        file: "src/content/moods.json"
+        description: "Palettes for the colour mood generator. Four hex codes each."
+        fields:
+          - name: moods
+            label: "Moods"
+            label_singular: "Mood"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: "Mood name", widget: string }
+              - { name: description, label: "One-line brief", widget: text }
+              - name: colors
+                label: "Colours (4 hex codes)"
+                label_singular: "Colour"
+                widget: list
+                min: 4
+                max: 4
+                hint: "Include the # — e.g. #F7C948"
+
+      - name: site
+        label: "Site Details"
+        file: "src/content/site.json"
+        description: "Tagline and venue information."
+        fields:
+          - { name: tagline, label: "Desktop tagline", widget: text }
+          - { name: venueName, label: "Venue name", widget: string }
+          - { name: addressLine1, label: "Address line 1", widget: string }
+          - { name: addressLine2, label: "Address line 2", widget: string, required: false }
+          - { name: hours, label: "Opening hours", widget: string, required: false }
+          - { name: mapUrl, label: "Map link", widget: string, default: "#", hint: "Full URL, or # to disable" }

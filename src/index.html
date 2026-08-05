@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Craft Break — A Monthly Creative Meetup at Cafe Isla</title>
 <meta name="description" content="Craft Break is a monthly, low-pressure creative meetup at Cafe Isla, hosted by Nimble Craft and The Mill Works Creator Space." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root{
     --sunflower:#F7C948;
@@ -295,7 +297,9 @@
     font:inherit; text-align:left;
   }
   .thumb:hover{transform:translateY(-3px);}
-  .thumb .art{height:86px; display:block;}
+  .thumb .art{height:86px; display:block; width:100%;}
+  img.art{object-fit:cover;}
+  img.big{width:100%; object-fit:cover;}
   .thumb .cap{display:block; padding:6px 8px; font-size:.74rem; font-weight:700; border-top:3px solid var(--ink);}
 
   .art-a{background:linear-gradient(135deg,var(--sunflower) 0 50%, var(--sky) 50% 100%);}
@@ -428,7 +432,7 @@
   <div class="desk-banner">
     <span class="tape tl"></span><span class="tape tr"></span>
     <h1>Craft Break</h1>
-    <p>A monthly creative meetup at Cafe Isla. Bring your hands, borrow our scissors. Double-tap or click an icon below to open a window.</p>
+    <p id="siteTagline">A monthly creative meetup at Cafe Isla. Bring your hands, borrow our scissors. Double-tap or click an icon below to open a window.</p>
   </div>
 
   <h2 class="sr-only">Desktop shortcuts</h2>
@@ -573,8 +577,8 @@
   <section class="window" id="win-loc" role="dialog" aria-labelledby="t-loc" aria-hidden="true">
     <header class="titlebar"><span class="dots"><span></span><span></span></span><h2 id="t-loc">Location: Cafe Isla</h2><button class="closebtn" type="button" data-close="win-loc" aria-label="Close Location">X</button></header>
     <div class="win-body">
-      <h3>Cafe Isla</h3>
-      <p class="addr">118 Wren Street<br />Corner of Wren &amp; Prospect<br />Open daily, 7:00 AM – 4:00 PM</p>
+      <h3 id="venueName">Cafe Isla</h3>
+      <p class="addr" id="siteAddress">118 Wren Street<br />Corner of Wren &amp; Prospect<br />Open daily, 7:00 AM – 4:00 PM</p>
       <h4>The vibe</h4>
       <p>Cafe Isla is a small neighborhood coffee shop with mismatched chairs, a long communal table down the middle, and plants in the window that somebody clearly loves. The light is good in the morning. The floor is already a little paint-flecked, so nobody flinches when a glue stick rolls off the table.</p>
       <h4>Why we meet here</h4>
@@ -586,7 +590,7 @@
       </ul>
       <h4>Getting here</h4>
       <p>Street parking on Prospect is free on weekends. The #14 bus stops one block east. Bike rack out front, under the awning.</p>
-      <div class="btn-row"><a class="btn" href="#" role="button">View map</a></div>
+      <div class="btn-row"><a class="btn" id="mapLink" href="#" role="button">View map</a></div>
       <p class="note">Cafe Isla is a working coffee shop, not a private venue. Buy a drink, tip your barista, keep the aisle clear. That's how we get invited back.</p>
     </div>
   </section>
@@ -610,6 +614,8 @@
         <p>Our host venue and unofficial third organizer. Thank you for the good light and the extra napkins.</p>
       </div>
       <p class="note">Site built as a hand-cut paper collage pretending to be a desktop. All text, prompts, and guest notes are authored for this demo.</p>
+      <h4>For hosts</h4>
+      <p>Events, gallery, guest notes, prompts, and palettes are all editable at <a href="/admin/">the content manager</a> — sign in with your Netlify Identity account.</p>
     </div>
   </section>
 </main>
@@ -629,9 +635,12 @@
 
 <script>
 /* =========================================================================
-   CRAFT BREAK — FRONT-END "CMS"
-   Everything a site editor needs to change lives in the four data blocks
-   below. No build step, no backend. Edit, save, redeploy.
+   CRAFT BREAK — CONTENT LAYER
+
+   Editors do NOT need to touch this file. All content is managed at /admin
+   (Decap CMS + Netlify Identity), which writes to the JSON files in
+   /content/. The objects below are the built-in fallbacks used if those
+   files can't be fetched (e.g. opening index.html straight off disk).
    ========================================================================= */
 
 /* ---- 1. DESKTOP APPS -------------------------------------------------- */
@@ -648,7 +657,7 @@ const craftBreakApps = [
 ];
 
 /* ---- 2. UPCOMING EVENTS ----------------------------------------------- */
-const craftBreakEvents = [
+let craftBreakEvents = [
   { day: "15", month: "Aug", year: "2026", theme: "Paper Collage Night",
     description: "Magazines, old maps, and a mountain of scrap paper. Cut first, decide later." },
   { day: "19", month: "Sep", year: "2026", theme: "Tiny Maps & Imaginary Places",
@@ -664,7 +673,7 @@ const craftBreakEvents = [
 ];
 
 /* ---- 3. PHOTO GALLERY -------------------------------------------------- */
-const craftBreakGallery = [
+let craftBreakGallery = [
   { title: "Collage sample",   caption: "Torn-map collage from the first paper night. The artist swears the scissors slipped.", artClass: "art-a" },
   { title: "Artwork 1",        caption: "Gouache study of the Cafe Isla window plants, painted between refills.",              artClass: "art-b" },
   { title: "Meetup moment",    caption: "The communal table at 10:40 AM, roughly the point where nobody's talking about work.", artClass: "art-c" },
@@ -674,7 +683,7 @@ const craftBreakGallery = [
 ];
 
 /* ---- 4. GUEST BOOK STARTER ENTRIES ------------------------------------- */
-const craftBreakGuestBook = [
+let craftBreakGuestBook = [
   { name: "Rosalind",  message: "Loved the collage night! I have not used a glue stick since 1998 and I'd forgotten the smell.", when: "Aug 2026" },
   { name: "Teo",       message: "Came alone, sat at the big table, left with three new friends and a very ugly drawing of a heron.", when: "Jul 2026" },
   { name: "Marguerite", message: "The two-minute pass-the-paper game destroyed me. Please run it every single month.",           when: "Jul 2026" },
@@ -682,7 +691,7 @@ const craftBreakGuestBook = [
 ];
 
 /* ---- 5. CREATIVE PROMPTS ----------------------------------------------- */
-const craftBreakPrompts = [
+let craftBreakPrompts = [
   "Draw a tiny map of your favorite imaginary neighborhood.",
   "Write a three-line poem about coffee and scissors.",
   "Sketch a logo for an imaginary craft club.",
@@ -700,7 +709,7 @@ const craftBreakPrompts = [
 ];
 
 /* ---- 6. COLOR MOODS ----------------------------------------------------- */
-const craftBreakMoods = [
+let craftBreakMoods = [
   { name: "Sunflower Desktop", colors: ["#F7C948","#FBE49B","#AFD3EC","#241F14"],
     description: "Loud yellow held in place by a calm blue and a hard black line. Use the dark sparingly and it sings." },
   { name: "Cold Brew & Cream", colors: ["#3B2A1E","#8A6A4F","#E7D6BE","#FFFDF4"],
@@ -1084,10 +1093,15 @@ renderEvents();
 /* ---------- gallery ---------- */
 const galleryGrid = document.getElementById("galleryGrid");
 const galleryDetail = document.getElementById("galleryDetail");
+function artFace(item, cls){
+  return item.image
+    ? '<img class="' + cls + '" src="' + encodeURI(item.image) + '" alt="' + escapeText(item.title) + '" />'
+    : '<span class="' + cls + ' ' + (item.artClass || "art-a") + '" aria-hidden="true"></span>';
+}
 function showGalleryItem(item){
   galleryDetail.innerHTML =
-    '<div class="big ' + item.artClass + '"></div>' +
-    '<h4>' + item.title + '</h4><p>' + item.caption + '</p>';
+    artFace(item, "big") +
+    '<h4>' + escapeText(item.title) + '</h4><p>' + escapeText(item.caption) + '</p>';
 }
 function renderGallery(){
   galleryGrid.innerHTML = "";
@@ -1095,7 +1109,7 @@ function renderGallery(){
     const b = document.createElement("button");
     b.type = "button";
     b.className = "thumb";
-    b.innerHTML = '<span class="art ' + item.artClass + '" aria-hidden="true"></span><span class="cap">' + item.title + '</span>';
+    b.innerHTML = artFace(item, "art") + '<span class="cap">' + escapeText(item.title) + '</span>';
     b.setAttribute("aria-label", "View larger: " + item.title);
     b.addEventListener("click", () => showGalleryItem(item));
     galleryGrid.appendChild(b);
@@ -1147,6 +1161,75 @@ guestForm.addEventListener("submit", e => {
   guestStatus.textContent = "Signed, " + name + ". See you at the big table.";
   guestForm.reset();
 });
+
+/* =========================================================================
+   CONTENT LOADER — pulls the JSON files that /admin writes to.
+   Falls back silently to the built-in defaults above if a file is missing.
+   ========================================================================= */
+async function getJSON(path){
+  try {
+    const res = await fetch(path, { cache: "no-cache" });
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } catch (_) {
+    return null;
+  }
+}
+
+async function loadContent(){
+  const [events, gallery, guests, prompts, moods, site] = await Promise.all([
+    getJSON("content/events.json"),
+    getJSON("content/gallery.json"),
+    getJSON("content/guestbook.json"),
+    getJSON("content/prompts.json"),
+    getJSON("content/moods.json"),
+    getJSON("content/site.json")
+  ]);
+
+  if (events && Array.isArray(events.events) && events.events.length){
+    craftBreakEvents = events.events;
+    renderEvents();
+  }
+  if (gallery && Array.isArray(gallery.items) && gallery.items.length){
+    craftBreakGallery = gallery.items;
+    renderGallery();
+  }
+  if (guests && Array.isArray(guests.entries)){
+    craftBreakGuestBook = guests.entries;
+    renderGuestBook();
+  }
+  if (prompts && Array.isArray(prompts.prompts) && prompts.prompts.length){
+    craftBreakPrompts = prompts.prompts;
+  }
+  if (moods && Array.isArray(moods.moods) && moods.moods.length){
+    craftBreakMoods = moods.moods;
+  }
+  if (site){
+    const set = (id, value) => { const el = document.getElementById(id); if (el && value) el.textContent = value; };
+    set("siteTagline", site.tagline);
+    set("venueName", site.venueName);
+    const addr = document.getElementById("siteAddress");
+    if (addr && site.addressLine1){
+      addr.innerHTML = [site.addressLine1, site.addressLine2, site.hours]
+        .filter(Boolean).map(escapeText).join("<br />");
+    }
+    const map = document.getElementById("mapLink");
+    if (map && site.mapUrl){
+      map.href = site.mapUrl;
+      if (site.mapUrl !== "#"){ map.target = "_blank"; map.rel = "noopener"; }
+    }
+  }
+}
+loadContent();
+
+/* ---------- Netlify Identity: bounce invite / recovery links to /admin ---- */
+if (window.netlifyIdentity){
+  window.netlifyIdentity.on("init", user => {
+    if (!user){
+      window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+    }
+  });
+}
 
 /* ---------- open a welcome window on first load (desktop only) ---------- */
 if (window.innerWidth >= 760) openWindow("win-about");
