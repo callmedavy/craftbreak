@@ -299,7 +299,6 @@
   .thumb:hover{transform:translateY(-3px);}
   .thumb .art{height:86px; display:block; width:100%;}
   img.art{object-fit:cover;}
-  img.big{width:100%; object-fit:cover;}
   .thumb .cap{display:block; padding:6px 8px; font-size:.74rem; font-weight:700; border-top:3px solid var(--ink);}
 
   .art-a{background:linear-gradient(135deg,var(--sunflower) 0 50%, var(--sky) 50% 100%);}
@@ -309,14 +308,37 @@
   .art-e{background:conic-gradient(from 20deg, var(--sunflower), var(--sky), var(--rose), var(--sunflower));}
   .art-f{background:repeating-radial-gradient(circle at 50% 50%, var(--sunflower-deep) 0 8px, var(--paper) 8px 18px);}
 
-  .lightbox{
-    margin-top:14px; padding:14px;
-    background:#fff; border:3px solid var(--ink);
-    border-radius:var(--cut-2); box-shadow:var(--shadow-sm);
+  .photo-modal{
+    width:min(900px, calc(100vw - 32px)); max-height:calc(100dvh - 32px);
+    padding:0; overflow:visible;
+    background:var(--paper); color:var(--ink);
+    border:3px solid var(--ink); border-radius:var(--cut-2);
+    box-shadow:10px 12px 0 rgba(36,31,20,.4);
   }
-  .lightbox .big{height:150px; border:3px solid var(--ink); border-radius:var(--cut-3); margin-bottom:10px;}
-  .lightbox h4{margin:0 0 4px;}
-  .lightbox p{margin:0; font-size:.87rem;}
+  .photo-modal::backdrop{background:rgba(36,31,20,.72); backdrop-filter:blur(3px);}
+  .photo-modal[open]{animation:photo-pop .18s ease-out;}
+  .photo-modal__close{
+    position:absolute; top:-13px; right:-13px; z-index:1;
+    width:38px; height:38px; padding:0;
+    display:grid; place-items:center;
+    background:var(--rose); color:var(--ink);
+    border:3px solid var(--ink); border-radius:50%;
+    box-shadow:3px 3px 0 rgba(36,31,20,.38);
+    font:900 1.1rem/1 inherit; cursor:pointer;
+  }
+  .photo-modal__close:hover{transform:rotate(5deg) scale(1.05);}
+  .photo-modal__close:focus-visible,.thumb:focus-visible{outline:4px solid var(--sunflower); outline-offset:3px;}
+  .photo-modal figure{margin:0; padding:14px;}
+  .photo-modal .big{
+    display:block; width:100%; height:min(68dvh, 680px);
+    object-fit:contain; background:#fff;
+    border:3px solid var(--ink); border-radius:var(--cut-3);
+  }
+  .photo-modal span.big{min-height:260px;}
+  .photo-modal figcaption{padding:12px 4px 2px;}
+  .photo-modal h3{margin:0 0 4px; font-size:1rem;}
+  .photo-modal p{margin:0; font-size:.87rem; color:var(--ink-soft);}
+  @keyframes photo-pop{from{opacity:0; transform:translateY(12px) scale(.97);}to{opacity:1; transform:none;}}
 
   /* Guest book */
   .entry{
@@ -418,6 +440,9 @@
     .window{width:calc(100vw - 20px) !important; left:10px !important;}
     .icon-grid{grid-template-columns:repeat(auto-fill,minmax(98px,1fr));}
     .clock{display:none;}
+    .photo-modal{width:calc(100vw - 20px); max-height:calc(100dvh - 20px);}
+    .photo-modal figure{padding:9px;}
+    .photo-modal .big{height:min(66dvh, 560px);}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -527,13 +552,8 @@
     <header class="titlebar"><span class="dots"><span></span><span></span></span><h2 id="t-gallery">Photo Gallery</h2><button class="closebtn" type="button" data-close="win-gallery" aria-label="Close Photo Gallery">X</button></header>
     <div class="win-body">
       <h3>Things people made, mid-break</h3>
-      <p>Click any tile to see the photo bigger.</p>
+      <p>Click or tap any tile to see the photo bigger.</p>
       <div class="gallery" id="galleryGrid"></div>
-      <div class="lightbox" id="galleryDetail" role="status" aria-live="polite">
-        <div class="big art-a"></div>
-        <h4>Pick a tile</h4>
-        <p>Select any thumbnail above to see it larger with its caption.</p>
-      </div>
     </div>
   </section>
 
@@ -602,6 +622,17 @@
     </div>
   </section>
 </main>
+
+<dialog class="photo-modal" id="galleryModal" aria-labelledby="galleryModalTitle" aria-describedby="galleryModalCaption">
+  <button class="photo-modal__close" id="galleryModalClose" type="button" aria-label="Close enlarged photo">X</button>
+  <figure>
+    <div id="galleryModalArt"></div>
+    <figcaption>
+      <h3 id="galleryModalTitle"></h3>
+      <p id="galleryModalCaption"></p>
+    </figcaption>
+  </figure>
+</dialog>
 
 <nav class="startmenu" id="startMenu" aria-label="Start menu">
   <div class="head">Craft Break 96</div>
@@ -828,6 +859,7 @@ document.querySelectorAll(".window").forEach(win => {
 
 document.addEventListener("keydown", e => {
   if (e.key !== "Escape") return;
+  if (galleryModal.open) return;
   if (startMenu.classList.contains("open")){ closeStartMenu(); return; }
   const ids = [...openWindows.keys()];
   if (ids.length) closeWindow(ids[ids.length - 1]);
@@ -1051,17 +1083,26 @@ renderEvents();
 
 /* ---------- gallery ---------- */
 const galleryGrid = document.getElementById("galleryGrid");
-const galleryDetail = document.getElementById("galleryDetail");
+const galleryModal = document.getElementById("galleryModal");
+const galleryModalArt = document.getElementById("galleryModalArt");
+const galleryModalTitle = document.getElementById("galleryModalTitle");
+const galleryModalCaption = document.getElementById("galleryModalCaption");
+const galleryModalClose = document.getElementById("galleryModalClose");
 function artFace(item, cls){
   return item.image
     ? '<img class="' + cls + '" src="' + encodeURI(item.image) + '" alt="' + escapeText(item.title) + '" />'
     : '<span class="' + cls + ' ' + (item.artClass || "art-a") + '" aria-hidden="true"></span>';
 }
 function showGalleryItem(item){
-  galleryDetail.innerHTML =
-    artFace(item, "big") +
-    '<h4>' + escapeText(item.title) + '</h4><p>' + escapeText(item.caption) + '</p>';
+  galleryModalArt.innerHTML = artFace(item, "big");
+  galleryModalTitle.textContent = item.title;
+  galleryModalCaption.textContent = item.caption;
+  galleryModal.showModal();
 }
+galleryModalClose.addEventListener("click", () => galleryModal.close());
+galleryModal.addEventListener("click", e => {
+  if (e.target === galleryModal) galleryModal.close();
+});
 function renderGallery(){
   galleryGrid.innerHTML = "";
   craftBreakGallery.forEach(item => {
