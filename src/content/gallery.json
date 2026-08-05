@@ -1,10 +1,28 @@
 {
   "items": [
-    { "title": "Collage sample", "caption": "Torn-map collage from the first paper night. The artist swears the scissors slipped.", "artClass": "art-a", "image": "" },
-    { "title": "Artwork 1", "caption": "Gouache study of the Cafe Isla window plants, painted between refills.", "artClass": "art-b", "image": "" },
-    { "title": "Meetup moment", "caption": "The communal table at 10:40 AM, roughly the point where nobody's talking about work.", "artClass": "art-c", "image": "" },
-    { "title": "Artwork 2", "caption": "A tiny imaginary neighborhood with three bakeries and no parking lots.", "artClass": "art-d", "image": "" },
-    { "title": "Supply crate", "caption": "Markers, washi tape, glue sticks, and the googly eye jar that never empties.", "artClass": "art-e", "image": "" },
-    { "title": "Stamp sampler", "caption": "Hand-carved eraser stamps from print night, printed onto a napkin out of impatience.", "artClass": "art-f", "image": "" }
+    {
+      "title": "Our Collective Coloring Page",
+      "caption": "It was amazing",
+      "artClass": "art-b",
+      "image": "/images/img_5663.jpeg"
+    },
+    {
+      "title": "Chickenssss",
+      "caption": "who doesn't like chicken?",
+      "artClass": "art-a",
+      "image": "/images/img_3894.jpeg"
+    },
+    {
+      "title": "Dragon Person? Yes",
+      "caption": "makes total sense",
+      "artClass": "art-c",
+      "image": "/images/img_3897.jpeg"
+    },
+    {
+      "title": "AH",
+      "caption": "by Anna",
+      "artClass": "art-d",
+      "image": "/images/img_3895.jpeg"
+    }
   ]
 }
