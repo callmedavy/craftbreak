@@ -12,9 +12,9 @@
     --sunflower:#F7C948;
     --sunflower-deep:#E0A81B;
     --sunflower-pale:#FBE49B;
-    --sky:#AFD3EC;
-    --sky-deep:#5D8FB3;
-    --sky-slate:#8FB4CE;
+    --sky:#72BDEA;
+    --sky-deep:#2879AC;
+    --sky-slate:#4A9BCF;
     --paper:#FFFDF4;
     --paper-shade:#F1EADA;
     --ink:#241F14;
@@ -96,7 +96,7 @@
 
   .tape{
     position:absolute; width:86px; height:26px;
-    background:rgba(175,211,236,.72);
+    background:rgba(114,189,234,.72);
     border:1px solid rgba(36,31,20,.28);
     box-shadow:2px 2px 0 rgba(36,31,20,.14);
   }
@@ -347,7 +347,7 @@
     border:3px solid var(--ink); border-radius:var(--cut-3);
     box-shadow:var(--shadow-sm);
   }
-  .entry:nth-child(odd){background:#DCEBF6; transform:rotate(.6deg);}
+  .entry:nth-child(odd){background:#CDE9FA; transform:rotate(.6deg);}
   .entry p{margin:0 0 6px; font-size:.9rem;}
   .entry footer{font-size:.76rem; font-weight:700; color:var(--ink-soft);}
 
@@ -372,7 +372,7 @@
     height:var(--taskbar-h);
     display:flex; align-items:center; gap:8px;
     padding:8px 10px;
-    background:linear-gradient(180deg,#C6DEF0 0%, var(--sky-slate) 100%);
+    background:var(--sky-slate);
     border-top:4px solid var(--ink);
     box-shadow:0 -4px 0 rgba(36,31,20,.16);
   }
@@ -501,7 +501,7 @@
       <div class="result" id="moodOut" role="status" aria-live="polite">
         <strong>Color mood</strong>
         <span id="moodName">No palette yet.</span>
-        <div class="swatches" id="moodSwatches" aria-hidden="true"><i style="background:#FBE49B"></i><i style="background:#AFD3EC"></i><i style="background:#FFFDF4"></i><i style="background:#5D8FB3"></i></div>
+        <div class="swatches" id="moodSwatches" aria-hidden="true"><i style="background:#FBE49B"></i><i style="background:#72BDEA"></i><i style="background:#FFFDF4"></i><i style="background:#2879AC"></i></div>
         <p id="moodDesc" style="margin:10px 0 0;font-size:.87rem;">Hit the palette button for a mood and a one-line brief.</p>
       </div>
       <p class="note">Two-minute group game we love: everyone draws one shape on their neighbor's paper, passes left, repeats four times, then you finish whatever monster you're handed.</p>
@@ -607,7 +607,7 @@
       <h3>Who puts this on</h3>
       <div class="host">
         <h4>Nimble Craft</h4>
-        <p>Founded in 2016, Nimble Craft was born from a dream to make creativity accessible and fun for all ages. With a background in Graphic Design, I believe in the power of collaboration – working closely with you to bring your unique vision to life.<br />Whether it's a birthday party, a team-building workshop, or a cozy crafting session, I'm here to guide you every step of the way.</p>
+        <p>Founded in 2016, Nimble Craft was born from a dream to make creativity accessible and fun for all ages. With a background in Graphic Design, Karith believes in the power of collaboration – working closely with you to bring your unique vision to life.<br />Whether it's a birthday party, a team-building workshop, or a cozy crafting session, she’s here to guide you every step of the way.</p>
         <p><a href="https://www.nimblecraftpa.com" target="_blank" rel="noopener noreferrer">https://www.nimblecraftpa.com</a></p>
       </div>
       <div class="host">
@@ -724,17 +724,17 @@ let craftBreakPrompts = [
 
 /* ---- 6. COLOR MOODS ----------------------------------------------------- */
 let craftBreakMoods = [
-  { name: "Sunflower Desktop", colors: ["#F7C948","#FBE49B","#AFD3EC","#241F14"],
+  { name: "Sunflower Desktop", colors: ["#F7C948","#FBE49B","#72BDEA","#241F14"],
     description: "Loud yellow held in place by a calm blue and a hard black line. Use the dark sparingly and it sings." },
   { name: "Cold Brew & Cream", colors: ["#3B2A1E","#8A6A4F","#E7D6BE","#FFFDF4"],
     description: "Four browns pretending to be a full palette. Warm, quiet, and forgiving of mistakes." },
   { name: "Window Light, 9 AM", colors: ["#FFF6DE","#F3D9A4","#BFD9AE","#7FA968"],
     description: "Pale and green and slightly sleepy. Good for anything drawn from life." },
-  { name: "Risograph Accident", colors: ["#E98A7B","#5D8FB3","#F7C948","#FFFDF4"],
+  { name: "Risograph Accident", colors: ["#E98A7B","#2879AC","#F7C948","#FFFDF4"],
     description: "Three inks that shouldn't overlap and absolutely should. Let the edges misregister." },
-  { name: "Paper Scraps", colors: ["#F1EADA","#D8C7A9","#8FB4CE","#4B4232"],
+  { name: "Paper Scraps", colors: ["#F1EADA","#D8C7A9","#4A9BCF","#4B4232"],
     description: "The palette of the bottom of the supply crate. Muted, tactile, endlessly stackable." },
-  { name: "Late Night Studio", colors: ["#241F14","#4B4232","#8FB4CE","#F7C948"],
+  { name: "Late Night Studio", colors: ["#241F14","#4B4232","#4A9BCF","#F7C948"],
     description: "Dark ground, one warm light source. Everything you draw looks more serious than it is." },
   { name: "Neighborhood Awning", colors: ["#E0A81B","#FFFDF4","#7FA968","#E98A7B"],
     description: "Storefront colors. Cheerful without being childish, if you keep the shapes flat." }
@@ -949,8 +949,8 @@ document.getElementById("btnMood").addEventListener("click", () => {
 const paintPalette = [
   { hex: "#F7C948", label: "Sunflower yellow" },
   { hex: "#FBE49B", label: "Pale sunflower" },
-  { hex: "#AFD3EC", label: "Light blue" },
-  { hex: "#5D8FB3", label: "Deep blue" },
+  { hex: "#72BDEA", label: "Light blue" },
+  { hex: "#2879AC", label: "Deep blue" },
   { hex: "#E98A7B", label: "Warm coral" },
   { hex: "#7FA968", label: "Leaf green" },
   { hex: "#241F14", label: "Ink black" },
