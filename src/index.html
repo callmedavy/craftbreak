@@ -5,7 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Craft Break — A Monthly Creative Meetup at Cafe Isla</title>
 <meta name="description" content="Craft Break is a monthly, low-pressure creative meetup at Cafe Isla, hosted by Nimble Craft and The Mill Works Creator Space." />
-<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="images/craft-break-icon-32.png" sizes="32x32" type="image/png" />
+<link rel="icon" href="images/craft-break-icon-192.png" sizes="192x192" type="image/png" />
+<link rel="apple-touch-icon" href="images/craft-break-icon-180.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#F7C948" />
 <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root{
@@ -14,6 +18,7 @@
     --sunflower-pale:#FBE49B;
     --sky:#72BDEA;
     --sky-deep:#2879AC;
+    --sky-vivid:#0D7CD1;
     --sky-slate:#4A9BCF;
     --paper:#FFFDF4;
     --paper-shade:#F1EADA;
@@ -88,7 +93,27 @@
     transform:rotate(-1.1deg);
     margin:0 0 22px;
   }
-  .desk-banner h1{margin:0 0 4px; font-size:clamp(1.35rem,4.4vw,1.85rem);}
+  .desk-banner h1{
+    margin:0 0 8px;
+    font-family:"Arial Black","Arial Bold","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight:900;
+    font-size:clamp(2rem,9vw,3.4rem);
+    letter-spacing:-.5px;
+    line-height:1.05;
+    color:var(--sky-vivid);
+  }
+  /* Highlighter swipe: a rectangular marker block sitting offset behind the site title */
+  .desk-banner h1 .hl{position:relative; z-index:0; display:inline-block; padding:0 .14em;}
+  .desk-banner h1 .hl::before{
+    content:""; position:absolute; z-index:-1;
+    left:-2px; right:-2px; top:11%; bottom:5%;
+    background:linear-gradient(101deg,
+      var(--sunflower-pale) 0%,
+      var(--sunflower) 20%,
+      var(--sunflower) 80%,
+      var(--sunflower-pale) 100%);
+    transform:translate(.13em, .09em);
+  }
   .desk-banner p{margin:0; font-size:.88rem; color:var(--ink-soft);}
   .desk-banner .tape{
     position:absolute;
@@ -384,7 +409,11 @@
     border:3px solid var(--ink); border-radius:var(--cut-1);
     box-shadow:3px 3px 0 rgba(36,31,20,.4);
   }
-  .startbtn svg{width:18px;height:18px;}
+  .startbtn img{
+    width:22px; height:22px; display:block;
+    border:2px solid var(--ink); border-radius:3px;
+    object-fit:cover;
+  }
   .startbtn[aria-expanded="true"]{background:var(--sunflower-deep);}
 
   .tasklist{
@@ -456,7 +485,7 @@
 <main class="desktop" id="desktop">
   <div class="desk-banner">
     <span class="tape tl"></span><span class="tape tr"></span>
-    <h1>Craft Break</h1>
+    <h1><span class="hl">Craft Break</span></h1>
     <p id="siteTagline">A monthly creative meetup at Cafe Isla. Bring your hands, borrow our scissors. Tap or click an icon below to open a window.</p>
   </div>
 
@@ -544,7 +573,6 @@
       <h3>Upcoming sessions at Cafe Isla</h3>
       <p>Third Saturday of most months, 10:00 AM to 12:00 PM. Drop in for ten minutes or stay the whole time.</p>
       <div id="eventList"></div>
-      <p class="note"><strong>Editing this list:</strong> open the script block at the bottom of <code>index.html</code> and update the <code>craftBreakEvents</code> array. Each entry takes a <code>day</code>, <code>month</code>, <code>year</code>, <code>theme</code>, and <code>description</code>.</p>
     </div>
   </section>
 
@@ -640,7 +668,7 @@
 
 <footer class="taskbar">
   <button class="startbtn" type="button" id="startBtn" aria-expanded="false" aria-controls="startMenu">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.6" fill="#241F14"/><g fill="#E0A81B" stroke="#241F14" stroke-width="1.2"><ellipse cx="12" cy="4.6" rx="2.4" ry="3.4"/><ellipse cx="12" cy="19.4" rx="2.4" ry="3.4"/><ellipse cx="4.6" cy="12" rx="3.4" ry="2.4"/><ellipse cx="19.4" cy="12" rx="3.4" ry="2.4"/></g></svg>
+    <img src="images/craft-break-icon-64.png" alt="" aria-hidden="true" width="22" height="22" />
     Start
   </button>
   <div class="tasklist" id="taskList" aria-label="Open windows"></div>
